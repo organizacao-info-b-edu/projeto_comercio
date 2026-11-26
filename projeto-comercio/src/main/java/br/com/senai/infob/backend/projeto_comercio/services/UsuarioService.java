@@ -12,13 +12,21 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Long contar () {
-        return usuarioRepository.count();
-    }
-     
     public Usuario salvar(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
+
+    public boolean login (String email, String senha) {
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        if (email == usuario.getEmail() && senha == usuario.getSenha()) {
+            return  true;
+        }
+        return false;
+    }
+    
+
+
+
     
 }
 
